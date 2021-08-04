@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+
+                    <!-- Page Heading -->
+                  <h1 class="h3 mb-2 text-gray-800">Bus Routes Details</h1>
+                  <p class="mb-4">The details usually tells the number of Bus Routes registed for the MyBMTC app. The admin can view the particular Latitude and Longitude of the particular bus routes. </p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Rout Number</th>
+                                            <th>Distance</th>
+                                            <th> List of STOPS</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                      {%for data in bus_routes%}
+                                      <tr>
+                                          <td>{{data.bus_no}}</td>
+                                          <td>{{data.distance}}</td>
+                                          <td><ul>
+                                            {%for d in data.list_of_bus_stops%}
+                                            <li>{{bus_stops[bus_stop_id.index(d["id"])].bus_stop}}</li>
+                                            {%endfor%}
+                                          </ul></td>
+                                      </tr>
+
+                                {%endfor%}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+{% endblock %}
